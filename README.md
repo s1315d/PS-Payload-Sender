@@ -41,7 +41,7 @@ Clone the repo:
 
 ```sh
 git clone https://github.com/s1315d/PS-Payload-Sender.git
-cd PS-Payload-Sender
+cd PS-Payload-Sender-main
 ```
 
 Install dependencies:
