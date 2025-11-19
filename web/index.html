@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Payload Sender</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="card">
+<h1>Payload Sender</h1>
+<input id="ip" type="text" placeholder="PS IP">
+<input id="port" type="text" placeholder="Port (9020)">
+<input id="file" type="file">
+<button onclick="send()">Send</button>
+<pre id="log">Ready</pre>
+</div>
+<script>
+async function send(){
+ let ip=document.getElementById("ip").value;
+ let port=document.getElementById("port").value;
+ let f=document.getElementById("file").files[0];
+ if(!ip||!port||!f){log.textContent+="\nMissing fields";return;}
+
+ let fd=new FormData();
+ fd.append("ip",ip); fd.append("port",port); fd.append("file",f);
+
+ let r=await fetch("/send",{method:"POST",body:fd});
+ let j=await r.json();
+ log.textContent+="\n"+(j.success?"OK":"ERROR")+": "+j.msg;
+}
+</script>
+</body>
+</html>
